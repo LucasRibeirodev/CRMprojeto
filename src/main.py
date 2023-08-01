@@ -10,11 +10,17 @@ from functools import partial
 
 root = tk.Tk()
 root.title("CRM MIS")
+login_frame = tk.Frame(root)
+
+
+def logout():
+    # Destrua a tela atual (tela inicial)
+    root.destroy()
 
 
 def main():
 
-
+    global login_frame
     # Interface de Login
     root.iconbitmap(r"C:\Users\lucas.santos\Desktop\CRM\src\logo_dbm_gr_8jK_icon.ico")
     login_frame = tk.Frame(root)
@@ -39,32 +45,39 @@ def main():
 
 
 def login(username, password):
+    global login_frame
     # Abra o arquivo JSON para leitura
     with open("users.json", "r") as file:
         users_data = json.load(file)
 
     # Verifique as credenciais do usuário com base no arquivo JSON
     for user in users_data["users"]:
-        
         if user["matricula"] == username and user["senha"] == password:
             messagebox.showinfo("Login", "Login bem-sucedido!")
             global login_usuario
-            login_usuario = user["matricula"]
-            root.destroy()
+            login_usuario = username  # Atribua o nome de usuário do usuário logado à variável login_usuario
+            login_frame.destroy()  # Feche a janela de login
             tela_inicial()
             return
 
     messagebox.showerror("Login", "Usuário ou senha incorretos.")
 
 def tela_inicial():
-    root = tk.Tk()
-    root.iconbitmap(r"C:\Users\lucas.santos\Desktop\CRM\src\logo_dbm_gr_8jK_icon.ico")
-    root.title("Tela de Comando")
-    root.state("zoomed")
 
+    global root  # Defina a variável root como global
+
+    if not root or not root.winfo_exists():  # Verifique se a janela ainda não foi criada ou se foi destruída
+        root = tk.Tk()  # Crie a janela principal (root) apenas se ainda não foi criada
+        root.iconbitmap(r"C:\Users\lucas.santos\Desktop\CRM\src\logo_dbm_gr_8jK_icon.ico")
+        root.title("Tela de Comando")
+        #root.state("zoomed")
+    root.state("zoomed")
     #cadastrar novo usuario
     btn_cadastrar_usuario = tk.Button(root, text="Cadastrar Novo Usuário", command=cadastrar_usuario)
     btn_cadastrar_usuario.pack(pady=20)
+
+    btn_logout = tk.Button(root, text="Logout", command=logout)
+    btn_logout.pack(pady=20)
     
 
     # Crie a interface da tela inicial do CRM
