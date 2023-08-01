@@ -1,0 +1,34 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "email": "usuario1@teste.com",
+            "matricula": "12345",
+            "senha": "admin123456",
+            "nome": "admin",
+            "nivel_acesso": "Administrador",
+            "data_hora_cadastro": "2023-08-01 12:34:56",
+            "login_cadastrante": "admin"
+        },
+        {
+            "id": 2,
+            "email": "usuario2@teste.com",
+            "matricula": "67890",
+            "senha": "admin123456",
+            "nome": "Usuario2",
+            "nivel_acesso": "Usu\u00c3\u00a1rio",
+            "data_hora_cadastro": "2023-08-01 13:45:22",
+            "login_cadastrante": "admin"
+        },
+        {
+            "id": 3,
+            "email": "lucas.santos@dbm.com.br",
+            "matricula": "11193",
+            "senha": "11193",
+            "nome": "Lucas Ribeiro",
+            "nivel_acesso": "Administrador",
+            "data_hora_cadastro": "2023-08-01 16:25:29",
+            "login_cadastrante": "12345"
+        }
+    ]
+}
